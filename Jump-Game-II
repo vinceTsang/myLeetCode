@@ -1,0 +1,27 @@
+/**
+ * 本算法需好好品味
+ * i从起始位置至maxReachPos搜索当前所能到达的最远距离。
+ * 一轮搜索后获得当前最远距离curMaxReachPos
+ * 同时将i的变化上限修改为curMaxReachPos，且起始位置紧接着上一次搜索的结尾
+ * i每到达一次上限maxReachPos，就增加一步step计数
+ * 因为当前i的变化范围内必须走一步，而这一步会导致当前能到达的最远距离
+ */
+class Solution {
+public:
+    int jump(int A[], int n) {
+        if(n==0) return 0;
+        int maxReachPos = A[0];
+        int curMaxReachPos = A[0];
+        int curStep = 1;
+        for(int i=1;i<=maxReachPos;i++){
+            curMaxReachPos=max(curMaxReachPos, i+A[i]);
+            if(i==n-1)
+                return curStep;
+            if(i==maxReachPos){
+                maxReachPos=curMaxReachPos;
+                curStep++;
+            }
+        }
+        return 0;
+    }
+};
