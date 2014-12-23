@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int reverse(int x) {
+        bool isNeg = x < 0 ? true : false;
+        int tmp = isNeg ? -x : x;
+        int len=log10((double)tmp);
+        long long ans=0;
+        while(tmp > 0){
+            int curDigit = tmp%10;
+            long long Pow = pow(10., (float)len)+0.5;
+                //pow() get float or double, which means some times result is 99.999999... when you think it supposed to be 100
+                //that why +0.5
+            ans += curDigit * Pow;
+            tmp /= 10, len--;
+        }
+        ans = ans > INT_MAX ? 0 : ans;
+        ans = isNeg ? -ans :ans;
+        return ans;
+    }
+};
+
+/**
+ * another beautiful AC code
+ *
+ * int reverse(int x) {
+ *     long long res = 0;
+ *     while(x) {
+ *         res = res*10 + x%10;
+ *         x /= 10;
+ *     }
+ *     return (res<INT_MIN || res>INT_MAX) ? 0 : res;
+ * }
+ */
