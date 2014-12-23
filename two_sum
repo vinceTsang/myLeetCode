@@ -1,0 +1,20 @@
+//#include <unordered_map>
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &numbers, int target) {
+        unordered_map<int, int> hash;
+        vector<int> ans;
+        for(int i = 0; i < numbers.size(); i++){
+            int numberToFind = target - numbers[i];
+            //if numbersToFind is found in map, return them
+            if(hash.find(numberToFind) != hash.end()){
+                ans.push_back(hash[numberToFind]+1);
+                ans.push_back(i+1);
+                return ans;
+            }
+            //number was not found, put it in the map
+            hash[numbers[i]]=i;
+        }
+        return ans;
+    }
+};
