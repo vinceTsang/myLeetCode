@@ -12,7 +12,9 @@ public:
                 ans.push_back(i+1);
                 return ans;
             }
-            //number was not found, put it in the map
+            //because the answer is unique, firstNum + secondNum = target
+            //number was not found, means the secondNum still on behind
+            //put the current num in the map, it could be the firstNum
             hash[numbers[i]]=i;
         }
         return ans;
